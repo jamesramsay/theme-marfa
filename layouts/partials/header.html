@@ -1,4 +1,4 @@
 {{ partial "navigation.html" . }}
-{{ if .IsHome }}
+{{ if or .IsHome .Params.showProfile }}
 {{ partial "profile.html" . }}
 {{ end }}
