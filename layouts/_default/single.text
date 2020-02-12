@@ -1,0 +1,9 @@
+{{ .Title }}
+{{ "=" | strings.Repeat (len .Title) }}
+{{ if .Params.Link }}
+Link: {{ .Params.Link }}{{ end }}
+{{ .RawContent | safeHTML }}
+
+{{ .Date.Format "Monday, 2 January 2006" }}
+By {{ .Site.Params.author }}
+{{ strings.TrimSuffix "/" .Permalink }}
