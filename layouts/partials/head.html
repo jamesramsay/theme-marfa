@@ -5,41 +5,59 @@
   <meta content="{{ .Site.Author.name }}" name="author">
 
   <title>
-      {{- block "title" . -}}
-		{{- .Site.Title -}}
-		{{- if .Title }}
-		- {{ .Title }}
-		{{- end -}}
+    {{- block "title" . -}}
+      {{- .Site.Title -}}
+      {{- if .Title }}
+      - {{ .Title }}
       {{- end -}}
+    {{- end -}}
   </title>
 
   <link href="{{ "assets/css/style.css" | relURL }}" rel="stylesheet">
   <link href="{{ "assets/css/highlight.css" | relURL }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ "custom.css" | relURL }}">
 
-	<link rel="shortcut icon" href="https://micro.blog/{{ .Site.Author.username }}/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="{{ "favicon.png" | absURL }}" type="image/x-icon" />
 
-    {{ if .RSSLink -}}
-      <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-      <link href="{{ "podcast.xml" | absURL }}" rel="alternate" type="application/rss+xml" title="Podcast" />
-      <link rel="alternate" type="application/json" title="{{ .Site.Title }}" href="{{ "feed.json" | absURL }}" />
-      <link rel="EditURI" type="application/rsd+xml" href="{{ "rsd.xml" | absURL }}" />
-    {{ end -}}
+  {{ if .RSSLink -}}
+  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+  <link href="{{ "podcast.xml" | absURL }}" rel="alternate" type="application/rss+xml" title="Podcast" />
+  <link rel="alternate" type="application/json" title="{{ .Site.Title }}" href="{{ "feed.json" | absURL }}" />
+  <link rel="EditURI" type="application/rsd+xml" href="{{ "rsd.xml" | absURL }}" />
+  {{ end -}}
 
-	<link rel="me" href="https://micro.blog/{{ .Site.Author.username }}" />
-	{{ with .Site.Params.twitter_username }}
-		<link rel="me" href="https://twitter.com/{{ . }}" />
-	{{ end }}
-	{{ with .Site.Params.github_username }}
-		<link rel="me" href="https://github.com/{{ . }}" />
-	{{ end }}
-	{{ with .Site.Params.instagram_username }}
-		<link rel="me" href="https://instagram.com/{{ . }}" />
-	{{ end }}
-	<link rel="authorization_endpoint" href="https://micro.blog/indieauth/auth" />
-	<link rel="token_endpoint" href="https://micro.blog/indieauth/token" />
-	<link rel="micropub" href="https://micro.blog/micropub" />
-	<link rel="microsub" href="https://micro.blog/microsub" />
-	<link rel="webmention" href="https://micro.blog/webmention" />
-	<link rel="subscribe" href="https://micro.blog/users/follow" />
+  {{ with .Site.Author.username }}
+  <link rel="me" href="https://micro.blog/{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.twitter_username }}
+  <link rel="me" href="https://twitter.com/{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.github_username }}
+  <link rel="me" href="https://github.com/{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.gitlab_username }}
+  <link rel="me" href="https://gitlab.com/{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.instagram_username }}
+  <link rel="me" href="https://instagram.com/{{ . }}" />
+  {{ end }}
+
+  {{ with .Site.Params.micropub_auth_endpoint }}
+  <link rel="authorization_endpoint" href="https://micro.blog/indieauth/auth" />
+  {{ end }}
+  {{ with .Site.Params.micropub_token_endpoint }}
+  <link rel="token_endpoint" href="https://micro.blog/indieauth/token" />
+  {{ end }}
+  {{ with .Site.Params.micropub_endpoint }}
+  <link rel="micropub" href="https://micro.blog/micropub" />
+  {{ end }}
+  {{ with .Site.Params.microsub_endpoint }}
+  <link rel="microsub" href="https://micro.blog/microsub" />
+  {{ end }}
+  {{ with .Site.Params.webmention_endpoint }}
+  <link rel="webmention" href="https://micro.blog/webmention" />
+  {{ end }}
+  {{ with .Site.Params.subscribe_endpoint }}
+  <link rel="subscribe" href="https://micro.blog/users/follow" />
+  {{ end }}
 </head>
