@@ -1,0 +1,12 @@
+{{ if or .IsHome .Site.Params.paginate_categories }}
+    {{ $paginator := .Paginate (where .Site.RegularPages.ByDate.Reverse "Type" "post") }}
+    {{ $list := $paginator.Pages }}
+    {{ range $index, $item := $list }}
+        {{if $index }},{{end}}{{ partial "post-item.json" $item }}
+    {{ end }}
+{{ else }}
+    {{ $list := where .Site.RegularPages.ByDate.Reverse "Type" "post" }}
+    {{ range $index, $item := $list }}
+        {{if $index }},{{end}}{{ partial "post-item.json" $item }}
+    {{ end }}
+{{ end }}
